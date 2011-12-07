@@ -1,0 +1,15 @@
+Source: python-smpp-pdu
+Section: python
+Priority: extra
+Maintainer: Eugene Agafonov <e.a.agafonov@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), python-all (>= 2.6.6), python-setuptools
+Standards-Version: 3.9.2
+Homepage: https://github.com/mozes/smpp.pdu
+Vcs-Git: git://github.com/eagafonov/smpp.pdu.git
+Vcs-Browser: https://github.com/eagafonov/smpp.pdu
+
+Package: python-smpp-pdu
+Architecture: all
+Depends: ${misc:Depends}
+Description: Python library for parsing Protocol Data Units (PDUs) in SMPP protocol
+ smpp.pdu is a Python library for parsing Protocol Data Units (PDUs) in SMPP protocol
