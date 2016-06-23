@@ -206,6 +206,10 @@ command_status_value_map = {
         'name' : 'ESME_RUNKNOWNERR',
         'description': 'Unknown Error',
     },
+    0x0000062CL : {
+        'name' : 'ESME_RESERVED_ERROR_JASMIN_CRASH',
+        'description': 'Jasmin crash error',
+    },
 }
 
 command_status_name_map = dict([(val['name'], key) for (key, val) in command_status_value_map.items()])
