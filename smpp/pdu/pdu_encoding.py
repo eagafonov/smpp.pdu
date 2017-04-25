@@ -702,6 +702,24 @@ class ShortMessageEncoder(IEncoder):
         smLength = self.smLengthEncoder.decode(file)
         return OctetStringEncoder(smLength).decode(file)
 
+class NetworkErrorCodeEncoder(IEncoder):
+    smNetworkTypeEncoder = Int1Encoder()
+    smErrorCodeEncoder = Int2Encoder()
+
+    def encode(self, value):
+        (network_type, error_code) = value
+
+        encoded = self.smNetworkTypeEncoder.encode(network_type)
+        encoded += self.smErrorCodeEncoder.encode(error_code)
+
+        return encoded
+    
+    def decode(self, file):
+        network_type = self.smNetworkTypeEncoder.decode(file)
+        error_code = self.smErrorCodeEncoder.decode(file)
+
+        return (network_type, error_code)
+    
 class OptionEncoder(IEncoder):
 
     def __init__(self):
@@ -738,7 +756,7 @@ class OptionEncoder(IEncoder):
             #T.dpf_result: DpfResultEncoder(),
             #T.set_dpf: SetDpfEncoder(),
             T.ms_availability_status: MsAvailabilityStatusEncoder(),
-            #T.network_error_code: NetworkErrorCodeEncoder(),
+            T.network_error_code: NetworkErrorCodeEncoder(),
             T.message_payload: OctetStringEncoder(self.getLength),
             T.delivery_failure_reason: DeliveryFailureReasonEncoder(),
             T.more_messages_to_send: MoreMessagesToSendEncoder(),
